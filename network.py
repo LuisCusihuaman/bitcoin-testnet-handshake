@@ -77,7 +77,7 @@ class VersionMessage:
                  receiver_ip=b'\x00\x00\x00\x00', receiver_port=18333,
                  sender_services=0,
                  sender_ip=b'\x00\x00\x00\x00', sender_port=18333,
-                 nonce=None, user_agent=b'/bitcoingraffiti:0.1/',
+                 nonce=None, user_agent=b'',
                  latest_block=0, relay=False):
         self.version = version
         self.services = services
@@ -92,7 +92,7 @@ class VersionMessage:
         self.sender_ip = sender_ip
         self.sender_port = sender_port
         if nonce is None:
-            self.nonce = int_to_little_endian(randint(0, 2 ** 64), 8)
+            self.nonce = int_to_little_endian(0, 8)
         else:
             self.nonce = nonce
         self.user_agent = user_agent
