@@ -1,11 +1,8 @@
-''' Example Code '''
-from helpers import *
 from network import *
 from block import *
 from ecc import PrivateKey
 from script import p2pkh_script, Script, secret_script
 from tx import TxIn, TxOut, Tx, TxFetcher
-from config import *
 from merkleblock import MerkleBlock
 from bloomfilter import *
 
@@ -25,7 +22,7 @@ def basic_node_action(host):
 
     '''get addresses'''
     '''uncomment to get addresses'''
-    # node.getAddressesFromHost()
+    node.getAddressesFromHost()
 
     '''get headers'''
     getheaders = GetHeadersMessage(start_block = testnet_genesis_block, end_block = testnet_block_3)
@@ -115,7 +112,7 @@ def bloomfilter():
                 print('ID:', message.id(), ':', i)
 
                 #OP_RETURN secrets
-                if tx_out.script_pubkey.cmds[0] == 106:    
+                if tx_out.script_pubkey.cmds[0] == 106:
                     secrets.append(decode_opreturn_secret(tx_out.script_pubkey.cmds[1]))
 
                 elif tx_out.script_pubkey.address(testnet=True) == address:
@@ -210,7 +207,7 @@ def len_sassaman_pretty():
     outs.append(outs[58])
     outs.pop(58)
     outs.pop(0)
-    
+
     padding = 3
 
     print(padding * '\n')
